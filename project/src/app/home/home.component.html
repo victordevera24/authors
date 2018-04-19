@@ -1,0 +1,17 @@
+
+<a [routerLink]="['/add']">Add an author</a>
+<div>
+  we have qutoes by:
+  <table>
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tr *ngFor='let a of authors'>
+      <td>{{a.name}}</td>
+      <td><a [routerLink]="['/edit/'+a._id]">Edit</a> <a (click)='deleteAuthor(a._id)'>Delete</a></td>
+    </tr>
+  </table>
+</div>

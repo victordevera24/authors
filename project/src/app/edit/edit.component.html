@@ -1,0 +1,10 @@
+
+<a [routerLink]="['/home']">Home</a>
+
+<form (submit)='editAuthor()'>
+
+    <label>Author name:
+      <input type='text' name='editAAuthor.name' [(ngModel)]='editAAuthor.name' />
+    </label>
+    <input type='submit' value='Edit Author' />
+  </form>

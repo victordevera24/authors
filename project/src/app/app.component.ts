@@ -17,5 +17,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(){ 
+    this._route.params.subscribe((params: Params) => console.log(params['id']));   
+  }
+
+  goHome() {
+    this._router.navigate(['/home']);
   }
 }

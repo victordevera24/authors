@@ -15,15 +15,13 @@ mongoose.connect('mongodb://localhost/authors');
 mongoose.Promise = global.Promise; 
 
 var AuthorSchema = new mongoose.Schema({
-    name: {type: String, required: [true, "You need to enter name"], minlength: 1},
-    created_at: String
+    name: {type: String, required: [true, "You need to enter name"], minlength: 3},
+    
 })
 mongoose.model('Author', AuthorSchema);
 var Author = mongoose.model("Author")
 
-app.all("*", (req,res,next) => {
-    res.sendFile(path.resolve("./public/dist/index.html"))
-});
+
 
 app.get('/authors', function(req, res) {  /////////view all
     Author.find({}, function(err, authors) {
@@ -40,7 +38,7 @@ app.get('/authors', function(req, res) {  /////////view all
 
 app.post('/authors', function(req, res) {   ////////////make new 
     console.log("POST DATA", req.body);
-    var author = new Task(req.body);
+    var author = new Author(req.body);
     author.save(function(err) {
         if(err) {
             console.log('something went wrong', err);
@@ -103,6 +101,10 @@ app.delete('/authors/:id', function(req, res) { ////////// delete
         }
     })
 })
+
+app.all("*", (req,res,next) => {
+    res.sendFile(path.resolve("./project/dist/index.html"))
+});
 
 app.listen(8000, function() {
     console.log('running this express project on port 8000')
